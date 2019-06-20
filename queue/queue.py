@@ -9,7 +9,8 @@ class Queue:
         self.storage.insert(0, item)
 
     def dequeue(self):
-        pass
+        if len(self.storage) > 0:
+            return self.storage.pop()
 
     def len(self):
         pass
