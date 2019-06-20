@@ -13,4 +13,4 @@ class Queue:
             return self.storage.pop()
 
     def len(self):
-        pass
+        return len(self.storage)
