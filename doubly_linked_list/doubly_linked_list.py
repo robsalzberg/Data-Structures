@@ -1,5 +1,7 @@
 """Each ListNode holds a reference to its previous node
 as well as its next node in the List."""
+
+
 class ListNode:
   def __init__(self, value, prev=None, next=None):
     self.value = value
@@ -9,6 +11,7 @@ class ListNode:
   """Wrap the given value in a ListNode and insert it
   after this node. Note that this node could already
   have a next node it is point to."""
+
   def insert_after(self, value):
     current_next = self.next
     self.next = ListNode(value, self, current_next)
@@ -18,6 +21,7 @@ class ListNode:
   """Wrap the given value in a ListNode and insert it
   before this node. Note that this node could already
   have a previous node it is point to."""
+
   def insert_before(self, value):
     current_prev = self.prev
     self.prev = ListNode(value, current_prev, self)
@@ -26,14 +30,18 @@ class ListNode:
 
   """Rearranges this ListNode's previous and next pointers
   accordingly, effectively deleting this ListNode."""
+
   def delete(self):
     if self.prev:
       self.prev.next = self.next
     if self.next:
-      self.next.prev = self.prev
+          self.next.prev = self.prev
+
 
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
+
+
 class DoublyLinkedList:
   def __init__(self, node=None):
     self.head = node
@@ -44,7 +52,14 @@ class DoublyLinkedList:
     return self.length
 
   def add_to_head(self, value):
-    pass
+    if self.head is None and self.tail is None:
+            l = ListNode(value)
+            self.head = l
+            self.tail = l
+    else:
+            self.head.insert_before(value)
+            self.head = self.head.prev
+            self.length += 1
 
   def remove_from_head(self):
     pass
