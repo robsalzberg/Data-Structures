@@ -124,7 +124,16 @@ class DoublyLinkedList:
 
 
     def move_to_end(self, node):
-        pass
+        if self.length > 1 and node != self.tail:
+            current_node = node
+            node.delete()
+            self.tail.insert_after(current_node.value)
+            self.tail = self.tail.next
+
+            if node != self.head:
+                self.head = self.head
+            else:
+                self.head = current_node.next
 
     def delete(self, node):
         pass
