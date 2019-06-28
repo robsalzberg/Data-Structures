@@ -3,7 +3,8 @@ class Heap:
     self.storage = []
 
   def insert(self, value):
-    pass
+    self.storage.append(value)
+    self._bubble_up(self.get_size() - 1)
 
   def delete(self):
     pass
@@ -12,12 +13,12 @@ class Heap:
     pass
 
   def get_size(self):
-    pass
+    return len(self.storage)
 
-  # Note that index is the spot in the storage array that
+    # Note that index is the spot in the storage array that
     # the element we just appended to the storage array 
     # currently occupies
-    def _bubble_up(self, index):
+  def _bubble_up(self, index):
         # 1. Check to see if the index is greater than zero
         # 2. Grab parent index
         # 3. Check if current value is greater than or less than parent value
