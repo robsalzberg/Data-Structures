@@ -12,41 +12,24 @@ class BinarySearchTree:
         # Is there a child? If not insert new node
         # Repeat the process
 
-        if value < self.value:                        
-            if not self.left:                           # if new node value greater than the root 
+        if value < self.value:
+            if not self.left:                           # if new node value greater than the root
                 self.left = BinarySearchTree(value)     # then child left value is equal to the BinarySearchTree's value
             else:
                 self.left.insert(value)                 # else if less than insert new node value as child left value
         else:
             if not self.right:                          # if new node value less than the root
-                self.right = BinarySearchTree(value)    # then child right value is equal to the BinarySearchTree's value
+                self.right = BinarySearchTree(value)      # then child right value is equal to the BinarySearchTree's value
             else:
                 self.right.insert(value)                # else if greater than insert new node value as child right value
 
     def contains(self, target):
-        # If the current value is equal to the target
-        if target == self.value:
-            return True
-            # check to the right
-        elif target > self.value:
-            # if there's nothing to the right then return false, otherwise
-            # Search for the target
-            if not self.right:
-                return False
-            else:
-                self.right.contains(target)
-        elif target < self.value:
-            # if there's nothing to the left then return false, otherwise
-            # Search for the target
-            if not self.left:
-                return False
-            else:
-                if self.left is not None:
-                    if self.left.contains(target):
-                        return True
-                if self.right is not None:
-                    if self.right.contains(target):
-                        return True
+        if self.value == target:                                    # if the target is the same as the self value return true
+            return True                         
+        branch = self.left if target < self.value else self.right   # set a new branch pointing to left if value is less than self value otherwise point it to the right
+        if branch is None:                                          # if the branch points nowhere return false
+            return False                                    
+        return branch.contains(target)                              # otherwise return a recursive call on target
 
     def get_max(self):
         if self.right is None:
